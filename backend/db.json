@@ -1,94 +1,35 @@
 {
-  "admin": [
+  "chamados": [
     {
-      "nome": "prof",
-      "email": "prof",
-      "senha": "prof",
-      "admin": true,
-      "id": 1
+      "id": 1,
+      "responsavel": "Teste",
+      "descricao": "Descrição",
+      "dataCadastro": "2023-04-11T01:51:30.810Z",
+      "dataAceite": "2023-04-11T02:09:49.582Z",
+      "aceite": true
     },
     {
-      "nome": "aa",
-      "email": "aa",
-      "senha": "aa",
-      "admin": true,
+      "responsavel": "Mirela",
+      "descricao": "Oliveira",
+      "dataCadastro": "2023-04-11T01:51:42.293Z",
+      "dataAceite": "",
+      "aceite": false,
       "id": 2
     },
     {
-      "nome": "eee",
-      "email": "eee",
-      "senha": "eee",
-      "admin": true,
+      "responsavel": "Maria",
+      "descricao": "Torres",
+      "dataCadastro": "2023-04-11T01:51:56.172Z",
+      "dataAceite": "",
+      "aceite": false,
       "id": 3
     }
   ],
-  "aulas": [
+  "users": [
     {
-      "link": "slasla",
-      "titulo": "slasla",
-      "professor": "mirela",
-      "data": "2022-08-08",
-      "horario": "07:00",
-      "id": 1
-    },
-    {
-      "link": "ddd",
-      "titulo": "ddd",
-      "professor": "jao",
-      "data": "2022-01-03",
-      "horario": "13:11",
-      "id": 2
-    }
-  ],
-  "aluno": [
-    {
-      "nome": "Andrea",
-      "email": "Andrea",
-      "senha": "Andrea",
-      "aluno": true,
-      "id": 1
-    },
-    {
-      "nome": "Maria",
-      "email": "Maria",
-      "senha": "Maria",
-      "aluno": true,
-      "id": 2
-    },
-    {
-      "nome": "Giuseppe",
-      "email": "Giuseppe",
-      "senha": "Giuseppe",
-      "aluno": true,
-      "id": 3
-    },
-    {
-      "nome": "Anna",
-      "email": "Anna",
-      "senha": "Anna",
-      "aluno": true,
-      "id": 4
-    },
-    {
-      "nome": "Giovanni",
-      "email": "Giovanni",
-      "senha": "Giovanni",
-      "aluno": true,
-      "id": 5
-    },
-    {
-      "nome": "Antonio",
-      "email": "Antonio",
-      "senha": "Antonio",
-      "aluno": true,
-      "id": 6
-    },
-    {
-      "nome": "ss",
-      "email": "ss",
-      "senha": "ss",
-      "aluno": true,
-      "id": 7
+      "id": 1,
+      "login": "teste",
+      "senha": "123"
     }
   ]
 }

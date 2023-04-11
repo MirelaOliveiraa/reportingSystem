@@ -1,72 +1,173 @@
-import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useHistory, useParams } from "react-router-dom";
+import ChamadoServices from "../../service";
+import "../../style/global.scss";
 
-import "./style.scss";
-import usuarioService from "../Usuario/services.js";
-import toast from "react-hot-toast";
+import DeleteIcon from "@material-ui/icons/Delete";
+import SearchIcon from "@material-ui/icons/Search";
+import { toast, Toaster } from "react-hot-toast";
+import EditIcon from "@material-ui/icons/Edit";
+import { Table , Button, Modal} from "react-bootstrap";
+import DoneIcon from "@material-ui/icons/Done";
+
+import Menu from "../../components/Menu";
+import { formatDate } from "../../utils/format-date";
 
 const Home = () => {
+  const [chamados, setChamados] = useState([]);
+  const [responsavel, setResponsavel] = useState([]);
+  const [descricao, setDescricao] = useState([]);
+  const [dataCadastro, setDataCadastro] = useState([]);
+  const [dataAceite, setDataAceite] = useState([]);
+
+  const { id } = useParams();
   const history = useHistory();
-  const [email, setEmail] = useState("");
-  const [senha, setSenha] = useState("");
-  const [aluno, setAluno] = useState("");
-  const [usuarios, setUsuarios] = useState("");
 
-  const login = () => {
-    usuarioService.list().then((response) => {
-      setUsuarios(response.data);
-      const filter = response.data.filter(
-        (item) => item.email === email && item.senha === senha
-      );
+ const [show, setShow] = useState(false);
 
-      usuarioService.listAluno().then((response) => {
-        setAluno(response.data);
-        const filterAluno = response.data.filter(
-          (item) => item.email === email && item.senha === senha
-        );
+  const handleClose = () => setShow(false);
+  const handleShow = (id) => setShow(true);
 
-        const Admin = filter[0]?.admin;
-        const Aluno = filterAluno[0]?.aluno;
 
-        if (filter) {
-          if (Admin) {
-            history.push("/admin", filter[0].id);
-          } else if (Aluno) {
-            history.push("/aluno", filterAluno[0].id);
-          } else {
-            toast.error("Usuário não cadastrado");
-          }
-        }
-      });
-    });
+  const Editar = (id) => {
+    history.push(`/Editar/${id}`);
+    console.log(id);
+  };
+  
+  const Aceitar = (id) => {
+    history.push(`/Aceite/${id}`);
+    console.log(id);
   };
 
-  return (
-    <section className="sectionHome">
-      <div className="card">
-        <span className="span"> Acesse seu Cadastro</span>
+  const filtrar = () => {
+      ChamadoServices.search(responsavel, descricao, dataCadastro, dataAceite).then((response) => setChamados(response.data));
+  };
 
-        <div className="login">
-          <input
-            onChange={(event) => setEmail(event.target.value)}
-            placeholder="Digite seu email"
-            className="inputLogin"
-            type="text"
-          />
-          <input
-            onChange={(event) => setSenha(event.target.value)}
-            placeholder="Digite sua senha"
-            className="inputLogin"
-            type="password"
-          />
-        </div>
+  const listarChamados = () => {
+    ChamadoServices.list().then((response) => setChamados(response.data));
+  };
+
+  const apagarChamado = async (id) => {
+    await ChamadoServices.delete(id);
+    handleClose();
+    toast.success("Familia excluída com sucesso!");
+    listarChamados();
+  };
+
+  useEffect(() => {
+    listarChamados();
+  }, []);
+
+  return (
+    <div className='container'>
+      <Menu />
+      <div className="section">
+        <div className="card">
         <div>
-          <button onClick={login} className="buttonLogin">
-            Entrar
-          </button>
+          <h4>Filtros</h4>
+          <div className="div-search">
+            <input
+              onChange={(event) => setResponsavel(event.target.value)}
+              type="search"
+              placeholder="Responsavel"
+              
+            />
+            <input
+              onChange={(event) => setDescricao(event.target.value)}
+              placeholder="Descrição"
+              type="search"
+              
+            />
+            <input
+              onChange={(event) => setDataCadastro(event.target.value)}
+              type="date"
+            />
+            <input
+              onChange={(event) => setDataAceite(event.target.value)}
+              type="date"              
+            />
+            
+            <button onClick={() => filtrar()}>
+              <SearchIcon />
+            </button>
+          </div>
+             
+          <Table>
+            <tbody>
+              <tr>
+                <th>Responsavel</th>
+                <th>Descrição</th>
+                <th>Data Cadastro</th>
+                <th>Data Aceite</th>
+                <th>Ações</th>
+                <td></td>
+              </tr>
+
+              {chamados.map((item) => (
+                <tr>
+                  <td>{item.responsavel}</td>
+                  <td>{item.descricao}</td>
+                  <td>{formatDate(item.dataCadastro)}</td>
+                  <td>{formatDate(item.dataAceite)}</td>
+                  <td>
+                    {item.aceite == false ?
+                    <>
+                    <Button 
+                      variant="primary"
+                    onClick={() => Editar(item.id)}>
+                      <EditIcon />
+                    </Button>
+
+                    <Button
+                      variant="danger"
+                      className="but-del"
+                      onClick={() => handleShow(item.id)}
+                    >
+                      <DeleteIcon />
+                    </Button>
+                      <Button
+                      variant="primary"
+                      className="but-del"
+                       onClick={() => Aceitar(item.id)}>
+                     Aceitar
+                    </Button>
+                    </>
+                    : <button variant="confirm">
+                    <DoneIcon />
+                    </button>
+                    } 
+
+                  </td>
+                  <td></td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
         </div>
+        </div>
+
       </div>
-    </section>
+
+{chamados.map((item) => (
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Confirmação</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Deseja excluir esse chamado?</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Cancelar
+          </Button>
+          <Button variant="danger" onClick={() => apagarChamado(item.id)}>
+            Apagar
+          </Button>
+        </Modal.Footer>
+      </Modal>
+))}
+
+
+
+    </div>
   );
 };
 export default Home;

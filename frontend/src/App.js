@@ -1,17 +1,20 @@
 import React from "react";
-import toast, { Toaster } from "react-hot-toast";
-
 import "./style/global.scss";
-import Routes from "./route";
+import Routes from "./Routes";
+import { toast, Toaster } from "react-hot-toast";
+import './style/global.scss';
+import "bootstrap/dist/css/bootstrap.min.css";
 
-const App = () => {
-  return (
-    <section className="sectionApp">
+function App() {
+  return ( 
+      <div>
       <div>
         <Routes />
       </div>
-      <Toaster position="top-center" reverseOrder={false} />
-    </section>
+      <Toaster position="top-right" />
+      </div>
+
   );
-};
+}
+
 export default App;
