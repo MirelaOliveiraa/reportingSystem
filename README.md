@@ -1,16 +1,21 @@
 # Tela de Login
-![image](https://user-images.githubusercontent.com/80600474/231036613-0ba71ecb-3d64-4731-85be-683e917ff480.png)
-# Tela de Listagem
-![image](https://user-images.githubusercontent.com/80600474/231037320-2b3779fb-7195-406a-912d-e1e2f77d5bf4.png)
-# Tela de Cadastro
-![image](https://user-images.githubusercontent.com/80600474/231037437-11705c6c-c9f4-48bb-b899-39dcb29700a0.png)
-# Tela de Edição
-![image](https://user-images.githubusercontent.com/80600474/231037553-8d2d473c-8b94-4af4-bef7-0bb8d91cf952.png)
-# Tela de Aceite
-![image](https://user-images.githubusercontent.com/80600474/231037665-cef8d52c-2188-4edd-9e96-9e0ba91ca404.png)
-# Modal exclusão
-![image](https://user-images.githubusercontent.com/80600474/231037745-02219a27-62f3-4fed-8dd9-f3098bbb2870.png)
+![image](https://user-images.githubusercontent.com/80600474/232249672-d75b9a33-4816-46b4-98b8-73512c5430e1.png)
+# Tela de Expandida
+![image](https://user-images.githubusercontent.com/80600474/232249606-43036d21-016b-4e89-8b94-a04c67134353.png)
 
+
+# Tela de Listagem
+![image](https://user-images.githubusercontent.com/80600474/232249019-610f0272-31b7-4048-8a5f-53c73bc450fe.png)
+![image](https://user-images.githubusercontent.com/80600474/232249434-ebef473d-19e0-4047-b222-a2967d3c5124.png)
+
+# Tela de Cadastro
+![image](https://user-images.githubusercontent.com/80600474/232249462-874369b7-77ef-4011-ab04-133a5a25f240.png)
+# Tela de Edição
+![image](https://user-images.githubusercontent.com/80600474/232249524-227d133c-18fc-42dc-840d-213c78234306.png)
+# Tela de Aceite
+![image](https://user-images.githubusercontent.com/80600474/232249509-04ed63f4-7f41-4285-baf2-f687ac999ef0.png)
+# Modal exclusão
+![image](https://user-images.githubusercontent.com/80600474/232249547-66d204cc-666e-407d-9a9d-34932c632b6c.png)
 Obs: Algumas teclas do meu teclado não estão funcionando (é muito azar para uma pessoa só).
 <br/>
 Sistema desenvolvido em algumas horas utilizando json server.
