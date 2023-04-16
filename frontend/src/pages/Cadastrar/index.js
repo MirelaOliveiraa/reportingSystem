@@ -4,9 +4,8 @@ import { toast, Toaster } from "react-hot-toast";
 
 import ChamadoServices from "../../service";
 import Menu from "../../components/Menu";
-
-import KeyboardReturnIcon from "@material-ui/icons/KeyboardReturn";
-import DoneIcon from "@material-ui/icons/Done";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -39,19 +38,50 @@ const Cadastro = () => {
   };
 
   return (
-    <div className="container">
+    <div>
 <Menu />
+<Header />
 
-<div className="section">
-  <div className="card">
-    <h2>Cadastro de chamado</h2>
- <Form>
+<div  className="content-wrapper">
+  
+   <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  <div  className="content">
+
+     <div className="container-fluid">
+        <div className="row">
+            <div className="col-lg-12"></div>
+           <div className="card">
+             <div className="card-header border-0">
+                <div className="d-flex justify-content-between">
+    <h3 className="card-title">Cadastro de chamado</h3>
+ <div className="card-tools">
+                  <Button variant="secondary" type="submit" onClick={() => direct()} >
+        Voltar
+      </Button>
+                </div>
+               
+                </div>
+              </div>
+            <div className="card-body">
+
+<Form>
       <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Responsavel</Form.Label>
+        <Form.Label>Responsável</Form.Label>
         <Form.Control   
         onChange={(event) => setResponsavel(event.target.value)}
             value={responsavel}
-             placeholder="Responsavel" />
+             placeholder="Responsável" />
       </Form.Group>
      <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Descrição</Form.Label>
@@ -61,47 +91,24 @@ const Cadastro = () => {
             value={descricao}
              />
       </Form.Group>
-      <Button variant="primary" type="submit"  onClick={() => adicionarChamado()}>
+      <Button variant="primary" type="submit" className="float-right"  onClick={() => adicionarChamado()}>
         Salvar
       </Button>
-      <Button variant="secondary" type="submit" onClick={() => direct()} >
-        Voltar
-      </Button>
+      
     </Form>
 
 
+            </div>
+           </div>
+            </div>
+            </div>
+ 
 
-{/* 
-<div className=" div-cad">
-          <h2 className="h2-cad">Cadastrar</h2>
-          <input
-            className="input-cad"
-            placeholder="Responsavel"
-            type="text"
-            onChange={(event) => setResponsavel(event.target.value)}
-            value={responsavel}
-          />
-
- <input
-            className="input-cad"
-            type="text"
-              placeholder="Descrição"
-            onChange={(event) => setDescricao(event.target.value)}
-            value={descricao}
-          />
-          
-          <button className="but-cad" onClick={() => adicionarChamado()}>
-            Salvar
-            <DoneIcon />
-          </button>
-          <button onClick={() => direct()} className="but-cad">
-            <KeyboardReturnIcon />
-            Voltar
-          </button>
-        </div> */}
   </div>
 </div>
-
+ <aside className="control-sidebar control-sidebar-dark">
+  </aside>
+<Footer />
     </div>
   );
 };

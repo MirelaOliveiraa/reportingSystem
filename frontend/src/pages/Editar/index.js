@@ -11,6 +11,10 @@ import Form from 'react-bootstrap/Form';
 
 import ChamadoServices from "../../service";
 import Menu from "../../components/Menu";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
+import { formatDate } from "../../utils/format-date";
+
 
 const Editar = () => {
   const params = useParams();
@@ -50,16 +54,45 @@ console.log(item)
   };
 
   return (
-    <div className="container">
-
+     <div>
 <Menu />
-      <div className="section">
-        <div className="card">
-    <h2>Edição de chamado</h2>
+<Header />
+
+<div  className="content-wrapper">
+  
+   <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  <div  className="content">
+
+     <div className="container-fluid">
+        <div className="row">
+            <div className="col-lg-12"></div>
+           <div className="card">
+             <div className="card-header border-0">
+                <div className="d-flex justify-content-between">
+    <h3 className="card-title">Editar chamado</h3>
+ <div className="card-tools">
+    <Button variant="secondary" type="submit" onClick={() => direct()} >
+        Voltar
+      </Button>
+                </div>
+                </div>
+              </div>
+            <div className="card-body">
 
 <Form>
       <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Responsavel</Form.Label>
+        <Form.Label>Responsável</Form.Label>
         <Form.Control   
          value={chamado.responsavel}
           onChange={(event) =>
@@ -69,12 +102,12 @@ console.log(item)
             })
           }
           type="text"
-             placeholder="Responsavel" />
+             placeholder="Responsável" />
       </Form.Group>
 
       
       <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Responsavel</Form.Label>
+        <Form.Label>Responsável</Form.Label>
         <Form.Control   
        value={chamado.descricao}
           onChange={(event) =>
@@ -90,26 +123,33 @@ console.log(item)
      <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Data Cadastro</Form.Label>
         <Form.Control   
-            value={chamado.dataCadastro}
+        disabled
+            value={formatDate(chamado.dataCadastro)}
           onChange={(event) =>
             setChamado({
               ...chamado,
               dataCadastro: event.target.value,
             })
           }
-          type="date"
              />
       </Form.Group>
-      <Button variant="primary" type="submit"  onClick={() => editarFamilia(chamado)}>
+      <Button variant="primary" type="submit" className="float-right" onClick={() => editarFamilia(chamado)}>
         Editar
       </Button>
-      <Button variant="secondary" type="submit" onClick={() => direct()} >
-        Voltar
-      </Button>
+  
     </Form>
-          
-        </div>
-      </div>
+     
+            </div>
+           </div>
+            </div>
+            </div>
+ 
+
+  </div>
+</div>
+ <aside className="control-sidebar control-sidebar-dark">
+  </aside>
+<Footer />
     </div>
   );
 };

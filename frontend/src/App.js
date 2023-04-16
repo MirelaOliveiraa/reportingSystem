@@ -2,7 +2,6 @@ import React from "react";
 import "./style/global.scss";
 import Routes from "./Routes";
 import { toast, Toaster } from "react-hot-toast";
-import './style/global.scss';
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {

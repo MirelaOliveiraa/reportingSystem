@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import ChamadoServices from "../../service";
-import "../../style/global.scss";
 
 import DeleteIcon from "@material-ui/icons/Delete";
 import SearchIcon from "@material-ui/icons/Search";
@@ -9,9 +8,11 @@ import { toast, Toaster } from "react-hot-toast";
 import EditIcon from "@material-ui/icons/Edit";
 import { Table , Button, Modal} from "react-bootstrap";
 import DoneIcon from "@material-ui/icons/Done";
-
+import Form from 'react-bootstrap/Form';
 import Menu from "../../components/Menu";
 import { formatDate } from "../../utils/format-date";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 
 const Home = () => {
   const [chamados, setChamados] = useState([]);
@@ -50,7 +51,7 @@ const Home = () => {
   const apagarChamado = async (id) => {
     await ChamadoServices.delete(id);
     handleClose();
-    toast.success("Familia excluída com sucesso!");
+    toast.success("Chamado excluído com sucesso!");
     listarChamados();
   };
 
@@ -59,43 +60,69 @@ const Home = () => {
   }, []);
 
   return (
-    <div className='container'>
+    <div >
       <Menu />
-      <div className="section">
-        <div className="card">
-        <div>
-          <h4>Filtros</h4>
-          <div className="div-search">
-            <input
+      <Header/>
+     
+<div className="content-wrapper">
+
+   <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  <div className="content">
+      <div className="container-fluid">
+        <div className="row">
+            <div className="col-lg-12">
+            <div className="card">
+              <div className="card-header border-0">
+                <div className="d-flex justify-content-between">
+                  <h3 className="card-title"> Lista de chamados</h3>
+                </div>
+              </div>
+              <div className="card-body">
+                 <div className="d-flex">
+            <Form.Control 
               onChange={(event) => setResponsavel(event.target.value)}
               type="search"
-              placeholder="Responsavel"
-              
+              placeholder="Responsável"
+              className="m-1"
             />
-            <input
+            <Form.Control 
               onChange={(event) => setDescricao(event.target.value)}
               placeholder="Descrição"
               type="search"
+              className="m-1"
               
             />
-            <input
+            <Form.Control 
               onChange={(event) => setDataCadastro(event.target.value)}
               type="date"
+              className="m-1"
             />
-            <input
+            <Form.Control 
               onChange={(event) => setDataAceite(event.target.value)}
-              type="date"              
+              type="date"     
+              className="m-1"
+
             />
             
-            <button onClick={() => filtrar()}>
+            <button className="btn btn-primary m-1" onClick={() => filtrar()}>
               <SearchIcon />
             </button>
           </div>
-             
-          <Table>
+               <Table>
             <tbody>
               <tr>
-                <th>Responsavel</th>
+                <th>Responsável</th>
                 <th>Descrição</th>
                 <th>Data Cadastro</th>
                 <th>Data Aceite</th>
@@ -111,7 +138,7 @@ const Home = () => {
                   <td>{formatDate(item.dataAceite)}</td>
                   <td>
                     {item.aceite == false ?
-                    <>
+                    <div div className="btn-group ">
                     <Button 
                       variant="primary"
                     onClick={() => Editar(item.id)}>
@@ -131,8 +158,8 @@ const Home = () => {
                        onClick={() => Aceitar(item.id)}>
                      Aceitar
                     </Button>
-                    </>
-                    : <button variant="confirm">
+                    </div>
+                    : <button className="btn btn-block btn-success disabled">
                     <DoneIcon />
                     </button>
                     } 
@@ -143,10 +170,17 @@ const Home = () => {
               ))}
             </tbody>
           </Table>
-        </div>
-        </div>
+              </div>
+            </div>
 
-      </div>
+          </div>
+        </div>
+</div>
+</div>
+</div>
+ <aside className="control-sidebar control-sidebar-dark">
+  </aside>
+<Footer />
 
 {chamados.map((item) => (
       <Modal show={show} onHide={handleClose}>
@@ -164,9 +198,6 @@ const Home = () => {
         </Modal.Footer>
       </Modal>
 ))}
-
-
-
     </div>
   );
 };
